@@ -64,6 +64,7 @@ public class PreparationManager extends Manager
         
         // reset and delete the fist guest
         ingredientNextX = 0;
+        MapManager.removeByClass(Button.class);
         MapManager.removeByClass(Text.class);
         MapManager.removeByClass(Ingredient.class);
         MapManager.removeByClass(PreparationMenu.class);
