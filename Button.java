@@ -19,6 +19,9 @@ public class Button extends Actor
         this.executeButtonAction();
     }
     
+    /**
+     * Set a custom id for a button
+     */
     public void setCustomId(String customId) {
         this.customId = customId;
     }
@@ -34,6 +37,7 @@ public class Button extends Actor
                 GameManager.start(); // start game
                 break;
             case "start_menu_preparation":
+                MapManager.removeByClass(Text.class);
                 PreparationMenu menu = new PreparationMenu();
                 GuestManager.stopSpawner();
                 break;

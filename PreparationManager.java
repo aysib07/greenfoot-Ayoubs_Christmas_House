@@ -26,6 +26,7 @@ public class PreparationManager extends Manager
             selectedIngredients.pop();
             ingredientNextX = 0;
         }
+        MapManager.removeByClass(Text.class);
     }
     
     public static void prepareMenu() {
@@ -61,17 +62,20 @@ public class PreparationManager extends Manager
             return;
         }
         
-        removeIngredient();
+        // reset and delete the fist guest
+        ingredientNextX = 0;
+        MapManager.removeByClass(Text.class);
+        MapManager.removeByClass(Ingredient.class);
         MapManager.removeByClass(PreparationMenu.class);
         GuestManager.removeFirstGuest();
-        GuestManager.continueSpawner();
+        GuestManager.continueSpawning();
     }
     
     public static boolean sameIngredients(List<Ingredient> needIngredients) {
         Stack<Ingredient> temp = new Stack<>();
         boolean equal = true;
     
-        // move elements from the original stack to the temp stack
+        // copy elements from the original stack to a temp stack
         while (!selectedIngredients.isEmpty()) {
             temp.push(selectedIngredients.top());
             selectedIngredients.pop();
@@ -111,7 +115,8 @@ public class PreparationManager extends Manager
             // move to the next element in the list
             needIngredients.next();
         }
-    
+        needIngredients.toFirst();
+        
         // restore the original stack order so the method has no side effects
         while (!temp.isEmpty()) {
             selectedIngredients.push(temp.top());

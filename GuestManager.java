@@ -14,14 +14,13 @@ public class GuestManager extends Manager
     private static final int MAX_QUEUE = 3; // limit of 3 guests
     private static final int START_X = 620; // x cord of the first guest in the queue
     private static final int SPACING = 210; // the space between each guest
-    private static final int SPAWN_INTERVAL_IN_SEC = 9; // the interval time of spawning guests
+    private static final int SPAWN_INTERVAL_IN_SEC = 8; // the interval time of spawning guests
     
-    private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private static boolean stopSpawning = false;
     
     public static void startSpawner() {
-        // spawn guests every 8 seconds (java interval)
-        scheduler.scheduleAtFixedRate(() -> {
+        // spawn guests via java interval
+        GameManager.scheduler.scheduleAtFixedRate(() -> {
             if (stopSpawning) return;
             if (currentQueueSize < MAX_QUEUE) spawnGuest();
         }, 0, SPAWN_INTERVAL_IN_SEC, TimeUnit.SECONDS);
@@ -44,7 +43,7 @@ public class GuestManager extends Manager
         stopSpawning = true;
     }
     
-    public static void continueSpawner() {
+    public static void continueSpawning() {
         stopSpawning = false;
     }
     

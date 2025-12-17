@@ -16,9 +16,13 @@ public class GameManager extends Manager
         isGameStarted = true; // set internal game status true
         MapManager.insertMap(); // replace the current map
         
-        GuestManager.startSpawner();
+        // start spwaning guests after 4 seconds
+        scheduler.schedule(() -> {
+            GuestManager.startSpawner();
+        }, 2, TimeUnit.SECONDS);
         
+        // plays music
         GreenfootSound music = new GreenfootSound("./music/background_music.mp3");
-        //music.playLoop();
+        music.playLoop();
     }
 }
