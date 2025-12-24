@@ -36,7 +36,7 @@ So funktioniert es:
 
 **3.** Klicke die Zutaten an, die zu dem bestellten Menu des Kunden passt
 
-**4.** Zuletzt klicke auf dem `Prepare` Button es zuzubereiten
+**4.** Zuletzt klicke auf dem `Prepare` Button, um es zuzubereiten
 
 ---
 
